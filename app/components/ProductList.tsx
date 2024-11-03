@@ -42,6 +42,7 @@ const getProducts = async (): Promise<GraphQLResponse> => {
                   }
                 }
                 legacyResourceId
+                vendor
               }
             }
           }
@@ -65,20 +66,20 @@ const getProducts = async (): Promise<GraphQLResponse> => {
 export default async function ProductList() {
   const json = await getProducts();
   return (
-    <div className="bg-white">
+    <div className="bg-white mt-20">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900">
-          Customers also purchased
+          Recently added
         </h2>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {json.data.products.edges.map((product) => (
             <div key={product.node.id} className="group relative">
-              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+              <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-white lg:aspect-none group-hover:opacity-75 lg:h-64">
                 <img
                   alt={product.node.featuredMedia.preview.image.altText}
                   src={product.node.featuredMedia.preview.image.url}
-                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                  className="h-full w-full object-cover object-center lg:h-48 lg:w-full"
                 />
               </div>
               <div className="mt-4 flex justify-between">
